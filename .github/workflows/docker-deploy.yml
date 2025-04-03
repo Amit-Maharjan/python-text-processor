@@ -41,6 +41,7 @@ jobs:
         with:
           context: .
           push: true
+          platforms: linux/amd64,linux/arm64 # This tells Docker to build for both AMD64 (common for most servers) and ARM64 (Mac’s architecture)
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
