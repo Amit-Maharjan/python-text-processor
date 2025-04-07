@@ -1,0 +1,7 @@
+Original Text:
+Hi, my name is Amit Maharjan.
+
+Word Count: 6
+
+Uppercase Text:
+HI, MY NAME IS AMIT MAHARJAN.

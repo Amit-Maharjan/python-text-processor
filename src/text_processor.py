@@ -39,8 +39,36 @@ def write_results(results, output_file):
         print(f"Error writing to file: {e}")
         return False
 
+def edit_input_file(file_path):
+    """Allow the user to modify the contents of the input file."""
+    print("\n***** Interactive Mode *****")
+    print("Enter your new content below. Press Enter twice to finish.\n")
+
+    new_lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        new_lines.append(line)
+
+    try:
+        with open(file_path, 'w') as file:
+            file.write("\n".join(new_lines))
+        print(f"\n Successfully updated {file_path}\n")
+    except Exception as e:
+        print(f"Error updating file: {e}")
+
 def main(input_file="input.txt", output_file="output.txt"):
     """Main function to process a text file."""
+
+    print("Do you want to edit the input file before processing? (y/n): ", end="")
+    choice = input().strip().lower()
+
+    if choice == 'y':
+        input_file = "custom-input.txt"
+        output_file = "custom-output.txt"
+        edit_input_file(input_file)
+
     text = read_file(input_file)
     if text:
         results = process_text(text)
