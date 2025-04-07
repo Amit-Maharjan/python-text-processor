@@ -1,3 +1,5 @@
+import sys
+
 def read_file(file_path):
     """Read text from a file."""
     try:
@@ -61,13 +63,14 @@ def edit_input_file(file_path):
 def main(input_file="input.txt", output_file="output.txt"):
     """Main function to process a text file."""
 
-    print("Do you want to edit the input file before processing? (y/n): ", end="")
-    choice = input().strip().lower()
+    if sys.stdin.isatty():
+        print("Do you want to edit the input file before processing? (y/n): ", end="")
+        choice = input().strip().lower()
 
-    if choice == 'y':
-        input_file = "custom-input.txt"
-        output_file = "custom-output.txt"
-        edit_input_file(input_file)
+        if choice == 'y':
+            input_file = "custom-input.txt"
+            output_file = "custom-output.txt"
+            edit_input_file(input_file)
 
     text = read_file(input_file)
     if text:
